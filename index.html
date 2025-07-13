@@ -2,75 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>srikalyanbhavanthi | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Srikalyan Bhavanthi | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f9f9f9;
       color: #222;
+      line-height: 1.6;
     }
-
-    /* Navbar */
     .navbar {
-      background-color: #ffffff;
+      background-color: #fff;
       padding: 10px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
     .navbar ul {
       display: flex;
       justify-content: center;
       gap: 25px;
       list-style: none;
     }
-
     .navbar a {
       color: #0077cc;
       font-weight: 600;
       text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
     }
-
     .navbar a:hover {
       text-decoration: underline;
     }
-
-    /* Hero Section */
-    .hero {
-      background-color: #f0f8ff;
-      padding: 80px 20px;
+    .navbar a.active {
+      color: #005fa3;
+    }
+    .navbar a.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background-color: #0077cc;
+      opacity: 0.8;
+      border-radius: 4px;
+      transition: opacity 0.3s;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .flex-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .flex-container img {
+      width: 300px;
+      border-radius: 12px;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: zoomIn 1.5s forwards ease-in-out;
+    }
+    .text-box {
+      max-width: 500px;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: zoomIn 1.5s forwards ease-in-out;
+      animation-delay: 1.5s;
+    }
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    #hero, #about, #skills, #projects {
+      margin-top: 40px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      color: #0077cc;
+      margin-bottom: 20px;
       text-align: center;
     }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #0077cc;
-      margin-bottom: 10px;
+    .section-content {
+      font-size: 1.1rem;
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #333;
-      margin-bottom: 20px;
+    ul {
+      list-style: disc;
+      padding-left: 20px;
     }
-
     .hero-buttons {
+      margin-top: 20px;
       display: flex;
-      justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
     }
-
     .btn {
       background-color: #0077cc;
       color: white;
@@ -79,123 +128,333 @@
       text-decoration: none;
       font-weight: 600;
       transition: background 0.3s;
+      cursor: pointer;
     }
-
     .btn:hover {
       background-color: #005fa3;
     }
-
-    .profile-pic {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 4px solid #0077cc;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    .wave {
+      display: inline-block;
+      animation: wave 2s infinite;
+      transform-origin: 70% 70%;
+    }
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+      60% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
     }
 
-    /* About Section */
-    .about {
-      background-color: #ffffff;
+    /* New Skills section styles */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .skill-box {
+      background: white;
+      border: 2px solid #0077cc;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .skill-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+    .skill-icon {
+      font-size: 3rem;
+      color: #0077cc;
+      margin-bottom: 12px;
+    }
+    #contact {
+      text-align: center;
       padding: 60px 20px;
     }
-
-    .about-container {
-      max-width: 1000px;
-      margin: auto;
+    .icon-container {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 40px;
       justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
     }
-
-    .about-text {
-      flex: 1 1 400px;
-    }
-
-    .about-text h2 {
-      color: #0077cc;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .about-text p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .about-text ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
-
-    .about-text ul li {
-      margin-bottom: 8px;
-    }
-
-    .about-photo {
-      flex: 1 1 300px;
-    }
-
-    .grad-pic {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    .contact-icon {
+      width: 50px;
+      height: 50px;
     }
   </style>
 </head>
 <body>
-
   <!-- Navbar -->
   <nav class="navbar">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#hero" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <img src="profile.jpg" alt="My Photo" class="profile-pic" />
-    <h1>Hi, I'm Srikalyan Bhavanthi</h1>
-    <p>UI/UX-Focused Developer | Java & Python Enthusiast</p>
-    <div class="hero-buttons">
-      <a href="https://your-resume-link.com" target="_blank" class="btn">View Resume</a>
-      <a href="contact.html" class="btn">Contact Me</a>
+  <section id="hero">
+    <div class="flex-container">
+      <img src="profile.jpg" alt="My Photo" onerror="this.style.display='none'" />
+      <div class="text-box">
+        <h1 style="text-align: left; margin-bottom: 5px;">Hello,</h1>
+        <h2 style="text-align: left; margin-top: 0;">I'm Srikalyan Bhavanthi <span class="wave">🙋🏻‍♂️</span></h2>
+        <p class="section-content">UI/UX-Focused Developer | Java & Python Enthusiast</p>
+        <div class="hero-buttons">
+          <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">View Resume</a>
+          <a href="#contact" id="contactBtn" class="btn">Contact Me</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about">
-    <div class="about-container">
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>Hello! I’m Srikalyan Bhavanthi, a passionate developer focused on UI/UX design, Java, and Python. I enjoy turning complex problems into simple, beautiful, and intuitive designs. I recently completed my Bachelor's and am pursuing my Master's to deepen my knowledge in technology and development.</p>
+<!-- About Section -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="flex-container about-container">
+    <img src="graduation.jpg" alt="Graduation Photo" onerror="this.style.display='none'" class="about-img" />
+    <div class="text-box about-text">
+      <p class="fade-in">👨‍💻 I'm a passionate developer focused on building intuitive user experiences. I hold a <strong>Master's in Computer and Information Sciences</strong> from <strong>Montclair State University</strong>, NJ.</p>
+      <p class="fade-in">Throughout my journey, I've cultivated a deep passion for solving real-world problems through technology, constantly learning and improving my craft in both frontend and backend development. My strengths lie in translating user needs into elegant code and designs, collaborating with teams, and adapting to new tools and frameworks with ease.</p>
+      <p class="fade-in">🎓 <strong>Education:</strong></p>
+      <ul class="fade-in">
+        <li>MS in Computer and Information Sciences – Montclair State University, NJ (CGPA: 3.74)</li>
+        <li>B.Tech in Information Technology – St. Martin’s Engineering College, Hyderabad (CGPA: 7.79)</li>
+      </ul>
+      <p class="fade-in">📜 <strong>Certifications:</strong> <em>(See detailed list <a href="#certifications">here</a>)</em></p>
+    </div>
+  </div>
+</section>
 
-        <h3>Education</h3>
-        <ul>
-          <li><strong>Master of Science:</strong> Computer and Information Sciences<br>
-            Montclair State University, New Jersey, USA<br>
-            <em>Aug 2023 – May 2025 ⋄ CGPA: 3.74 / 4</em>
-          </li>
-          <li><strong>Bachelor of Technology:</strong> Information Technology<br>
-            St. Martin’s Engineering College, Hyderabad, India<br>
-            <em>Aug 2019 – June 2023 ⋄ CGPA: 7.79 / 10</em>
-          </li>
-        </ul>
+<!-- Certifications Section -->
+<section id="certifications">
+  <h2 class="section-title">Certifications</h2>
+  <div class="skills-grid">
+    <div class="skill-box">
+      <img src="https://img.icons8.com/color/96/python--v1.png" alt="Python" class="cert-icon"/>
+      <span>Python for Everybody<br><small>University of Michigan (Coursera)</small></span>
+    </div>
+    <div class="skill-box">
+      <img src="https://img.icons8.com/color/96/java-coffee-cup-logo--v1.png" alt="Java" class="cert-icon"/>
+      <span>Core Java<br><small>Qspiders/Jspiders</small></span>
+    </div>
+    <div class="skill-box">
+      <img src="https://img.icons8.com/color/96/amazon-web-services.png" alt="AWS" class="cert-icon"/>
+      <span>AWS Cloud Practitioner<br><small>Amazon Web Services</small></span>
+    </div>
+    <div class="skill-box">
+      <img src="https://img.icons8.com/color/96/google-logo.png" alt="Google UX" class="cert-icon"/>
+      <span>UX Design Certificate<br><small>Google (Grow with Google)</small></span>
+    </div>
+  </div>
+</section>
+
+<style>
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  justify-items: center;
+}
+.skill-box {
+  background: white;
+  border: 2px solid #0077cc;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+.skill-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.cert-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 12px;
+}
+</style>
+
+  <!-- Skills Section -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+
+  <!-- Core Programming & Software Development -->
+  <div class="skills-category hidden" id="skills-core">
+    <h3 class="section-title" style="font-size: 1.5rem; margin-top: 30px;">Core Programming & Software Development</h3>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <i class="fab fa-java skill-icon"></i>
+        <span>Core Java</span>
       </div>
-      <div class="about-photo">
-        <img src="graduation.jpg" alt="Graduation Photo" class="grad-pic" />
+      <div class="skill-box">
+        <i class="fab fa-python skill-icon"></i>
+        <span>Python</span>
       </div>
+      <div class="skill-box">
+        <i class="fas fa-code skill-icon"></i>
+        <span>OpenCV</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Web, Data & Specialized Frameworks -->
+  <div class="skills-category hidden" id="skills-web">
+    <h3 class="section-title" style="font-size: 1.5rem; margin-top: 40px;">Web, Data & Specialized Frameworks</h3>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <i class="fab fa-html5 skill-icon"></i>
+        <span>HTML</span>
+      </div>
+      <div class="skill-box">
+        <i class="fab fa-css3-alt skill-icon"></i>
+        <span>CSS</span>
+      </div>
+      <div class="skill-box">
+        <i class="fab fa-figma skill-icon"></i>
+        <span>Figma</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools & Platforms -->
+  <div class="skills-category hidden" id="skills-tools">
+    <h3 class="section-title" style="font-size: 1.5rem; margin-top: 40px;">Tools & Platforms</h3>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <i class="fas fa-database skill-icon"></i>
+        <span>MySQL</span>
+      </div>
+      <div class="skill-box">
+        <i class="fas fa-code-branch skill-icon"></i>
+        <span>Git</span>
+      </div>
+      <div class="skill-box">
+        <i class="fas fa-cloud skill-icon"></i>
+        <span>AWS</span>
+      </div>
+      <div class="skill-box">
+        <i class="fab fa-windows skill-icon"></i>
+        <span>Windows</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes zoomFadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.skills-category.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.skills-category.visible {
+  animation: zoomFadeIn 0.6s ease forwards;
+}
+</style>
+
+<script>
+function revealSkillsOnScroll() {
+  const categories = document.querySelectorAll('.skills-category');
+  const triggerBottom = window.innerHeight * 0.85;
+
+  categories.forEach((cat, index) => {
+    const rect = cat.getBoundingClientRect();
+    if (rect.top < triggerBottom && !cat.classList.contains('visible')) {
+      setTimeout(() => {
+        cat.classList.remove('hidden');
+        cat.classList.add('visible');
+      }, index * 600); // Staggered delay for smooth zoom in
+    }
+  });
+}
+
+window.addEventListener('scroll', revealSkillsOnScroll);
+window.addEventListener('DOMContentLoaded', revealSkillsOnScroll);
+</script>
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="section-content">
+      <ul>
+        <li><strong>Image Morphing Techniques:</strong> Smooth facial transition using OpenCV, NumPy, and Dlib.</li>
+        <li><strong>Human Activity Recognition:</strong> CNN ensemble to detect physical activity with 94% accuracy.</li>
+        <li><strong>Stress Detection:</strong> Real-time alerts using facial recognition and ML classification.</li>
+      </ul>
     </div>
   </section>
 
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="icon-container">
+      <a href="mailto:srikalyanbhavanthi27@gmail.com" title="Email">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon" class="contact-icon" />
+      </a>
+      <a href="https://github.com/srikalyanbhavanthi" target="_blank" title="GitHub">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" class="contact-icon" />
+      </a>
+      <a href="https://linkedin.com/in/srikalyanbhavanthi" target="_blank" title="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" class="contact-icon" />
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scroll for Contact Me button
+    document.getElementById('contactBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Active nav link highlight on scroll
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    function updateActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('DOMContentLoaded', updateActiveLink);
+  </script>
 </body>
 </html>
