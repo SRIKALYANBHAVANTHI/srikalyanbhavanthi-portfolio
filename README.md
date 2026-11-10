@@ -32,7 +32,7 @@ The website includes:
 
 - **Professional experience** — selected roles and engineering responsibilities.
 - **Technical skills** — languages, frameworks, databases, cloud, and AI tooling.
-- **Projects** — examples of full-stack, cloud, and AI-related work.
+- **Projects** — professional project highlights and links to selected public GitHub repositories.
 - **Education & development** — academic background and professional learning.
 - **Contact links** — GitHub and LinkedIn.
 
@@ -63,10 +63,11 @@ This is a static website. You can run it locally without a build step:
 
 ```text
 .
-├── assets/
 ├── index.html
 ├── style.css
 ├── script.js
+├── profile.jpeg
+├── graduation.jpg
 ├── resume.pdf
 └── README.md
 ```
